@@ -16,19 +16,6 @@ const genres = movie_mocks
   }, [] as string[])
   .sort();
 
-// const getMovie = createAsyncThunk<
-//   Movie,
-//   { _id: string },
-//   { rejectValue: string }
-// >("movies/getMovie", async ({ _id }, { rejectWithValue }) => {
-//   const foundMovie = movie_mocks.find((movie) => movie._id === _id);
-//   if (!foundMovie) {
-//     return rejectWithValue("Movie not found");
-//   }
-
-//   return foundMovie;
-// });
-
 export const movieSlice = createSlice({
   name: "movies",
   initialState: {
