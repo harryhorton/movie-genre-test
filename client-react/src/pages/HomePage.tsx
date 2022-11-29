@@ -2,14 +2,17 @@ import { Box, HStack, Text } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { useDraggable } from "react-use-draggable-scroll";
+import { MovieGenres } from "../components/MovieGenres";
+import { MovieLanguages } from "../components/MovieLanguages";
 import { MoviePoster } from "../components/MoviePoster";
+import { MovieRating } from "../components/MovieRating";
 import { useMovies } from "../hooks/useMovies";
 
 export const HomePage = () => {
   const { filteredMovies, filterByGenre, currentGenre } = useMovies();
 
-  const ref = useRef<any>(); // We will use React useRef hook to reference the wrapping div:
-  const { events } = useDraggable(ref); // Now we pass the reference to the useDraggable hook:
+  const ref = useRef<any>();
+  const { events } = useDraggable(ref);
 
   useEffect(() => {
     if (currentGenre === "") {
@@ -38,19 +41,9 @@ export const HomePage = () => {
             key={movie._id}
           >
             <MoviePoster movie={movie} />
-            <Text fontSize="xl">{movie.genres?.join(" | ")}</Text>
-            <Text fontSize="xl" color="red.500" mb="2">
-              {movie.languages?.join(" | ")}
-            </Text>
-            <Text
-              fontSize="xl"
-              bg="blue.600"
-              rounded="2xl"
-              px="3"
-              display="inline-block"
-            >
-              {movie.imdb.rating} / 10
-            </Text>
+            <MovieGenres movie={movie} />
+            <MovieLanguages movie={movie} />
+            <MovieRating movie={movie} />
           </Box>
         ))}
       </HStack>
