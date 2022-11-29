@@ -1,7 +1,7 @@
 import { movie_mocks } from "../data/movie_mocks";
 import { Movie } from "../types/movie";
 
-const DELAY = 500;
+const DELAY = 100;
 
 export const fetchMovie = (id: string) =>
   new Promise<Movie>((resolve, reject) => {
